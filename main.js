@@ -14,10 +14,10 @@ const loadCommands = require("./Loader/loadCommands")
 client.commands = new Discord.Collection()
 
 const db = mysql.createConnection({
-  host: 'localhost',
-  user: 'root',
-  password: '',
-  database: 'v14'
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_NAME
 });
 
 db.connect((err) => {
@@ -192,8 +192,6 @@ client.on('guildMemberAdd', (member) => {
 
 client.login(process.env.TOKEN);
 
-
-// ... your existing code ...
 
 loadCommands(client)
 
